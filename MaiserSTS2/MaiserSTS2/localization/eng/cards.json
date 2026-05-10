@@ -1,0 +1,46 @@
+{
+  "MAISERSTS2-MAISER_NEIGHBORHOOD_HERO.title": "Maiser, Neighborhood Hero",
+  "MAISERSTS2-MAISER_NEIGHBORHOOD_HERO.description": "{IfUpgraded:show:Add {CreateCount:diff()} [gold]Rapid Fire[/gold].\n}Add {CreateCount:diff()} [gold]Dutiful Steed [/gold] to hand.\nUntil end of turn whenever [gold]Amulet[/gold] power is removed,\nAdd {CreateCount:diff()} [gold]Rapid Fire[/gold] to hand.\n",
+
+  "MAISERSTS2-DUTIFUL_STEED.title": "Dutiful Steed",
+  "MAISERSTS2-DUTIFUL_STEED.description": "If the next card used will deal damage give it {DamageBonus:diff()} damage.\nIf the next card used will gain block give it {BlockBonus:diff()} block.",
+
+  "MAISERSTS2-RAPID_FIRE.title": "Rapid Fire",
+  "MAISERSTS2-RAPID_FIRE.description": "Deal {Damage:diff()} to an enemy.\nThen if you've played atleast 3 [gold]Rapid Fire[/gold] this battle, deal {DamageEffect:diff()} damage directly hp to a random enemy\nCard played this battle: {CardPlayedCount:diff()}",
+  
+  "MAISERSTS2-CHAOS_WIELDER.description": "Spellboost: Subtract 1 energy cost of this card.",
+  "MAISERSTS2-CHAOS_WIELDER.title": "Chaos Wielder",
+ 
+  "MAISERSTS2-INSIGHT.description": "Draw {Cards:diff()} card.\nGain {Block:diff()} block.",
+  "MAISERSTS2-INSIGHT.title": "Insight",
+  
+  "MAISERSTS2-MAGIC_MISSILE.description": "Draw {Cards:diff()} card.\nDeal {Damage:diff()} damage.",
+  "MAISERSTS2-MAGIC_MISSILE.title": "Magic Missile",
+
+  "MAISERSTS2-NATERRAN_GREAT_TREE.description": "If any other [gold]Naterran Great Tree(s)[/gold] [gold]amulet[/gold],\nremove 1 counter then draw {Cards:diff()} card.",
+  "MAISERSTS2-NATERRAN_GREAT_TREE.title": "Naterran Great Tree",
+
+  "MAISERSTS2-WORDS_OF_JUDGEMENT.description": "Remove all effect on the enemy, If there is any [gold]amulet(s)[/gold] stack, recover {EnergyGain:diff()} energy.",
+  "MAISERSTS2-WORDS_OF_JUDGEMENT.title": "Words of Judgement",
+
+  "MAISERSTS2-TRAVELERS_RESPITE.description": "Heal {HealingValue:diff()} hp.\nAdd {CreateCount:diff()} [gold]Naterran Great Tree[/gold] to hand",
+  "MAISERSTS2-TRAVELERS_RESPITE.title": "Traveler's Respite",
+
+  "MAISERSTS2-VINCENT_THE_PEACEKEEPER.description": "While in hand, whenever a card get enchanted by [gold]amulet[/gold], subtract {SubtractCost:diff()} energy of this card.\nWhenever a card get enchanted by an [gold]amulet[/gold], add {CreateCount:diff()} [gold]Words of Judgement into hand.\nWhenever you play skill for the 3rd times with the same name of this turn, deal {Damage:diff()} damage to all enemies.",
+  "MAISERSTS2-VINCENT_THE_PEACEKEEPER.title": "Vincent the Peacekeeper",
+
+  "MAISERSTS2-RIVAYLIAN_BANDIT.description": "Enhance({EnhanceCostValue:diff()}): Deal {EnhanceDamageValue:diff()} damage to an enemy.Gain {EnhanceBlockValue:diff()} block, when this card is enchanted for the first time this turn gain additional {EnhanceBlockBonusValue:diff()} block.\nDeal {Damage:diff()} damage to an enemy.Gain {Block:diff()} block, when this card is enchanted for the first time this turn gain additional {BlockBonus:diff()} block.",
+  "MAISERSTS2-RIVAYLIAN_BANDIT.title": "Rivaylian Bandit",
+
+  "MAISERSTS2-RUNIE_RESOLUTE_DIVINER.description": "If this card has been Spellboosted at least 1 time, draw a card.\nThen if it's been [gold]Spellboosted[/gold] at least 4 times deal {Damage:diff()} to a random enemy.\nThen if it's been [gold]Spellboosted[/gold] at least 7 times, deal {Damage:diff()} to a random enemy and heal {HealingValue:diff()} hp.\nThen if it's been [gold]Spellboosted[/gold] at least 10 times, add {CreateCount:diff()} [gold]Runie, Resolue Diviners[/gold] into hand.\nSpellboost: {SpellboostCount:diff()}",
+  "MAISERSTS2-RUNIE_RESOLUTE_DIVINER.title": "Runie, Resolute Diviner",
+
+  "MAISERSTS2-ISABELLES_CONJURATION.description": "Draw a random {Cards:diff()} attack card from your draw pile to hand.",
+  "MAISERSTS2-ISABELLES_CONJURATION.title": "Isabelle's Conjuration",
+
+  "MAISERSTS2-TETRAS_METTLE.description": "{IfUpgraded:show:During this 2 turn|During this turn}.\nWhenever you play [gold]Machina[/gold] card draw {Cards:diff()} card",
+  "MAISERSTS2-TETRAS_METTLE.title": "Tetra's Mettle",
+
+  "MAISERSTS2-SORCERY_IN_SOLIDARITY.description": "Add 1 of these following card:\n -[gold]Isabelle's Conjuration[/gold]\n- Tetra's Mettle\nIf this card has been [gold]Spellboosted[/gold] atleast 5 times, instead add both cards to hand\nSpellboost: {SpellboostCount:diff()}",
+  "MAISERSTS2-SORCERY_IN_SOLIDARITY.title": "Sorcery in Solidarity"
+}

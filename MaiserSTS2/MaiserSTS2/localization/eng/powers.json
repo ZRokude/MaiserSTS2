@@ -1,0 +1,22 @@
+{
+  "MAISERSTS2-DUTIFUL_STEED_POWER.title": "Dutiful Steed",
+  "MAISERSTS2-DUTIFUL_STEED_POWER.description": "If the next card used will deal damage give it {DamageBonus:diff()} damage.\nIf the next card used will gain block give it {BlockBonus:diff()} block.\nPower stack: {PowerStackCount:diff()}.",
+  "MAISERSTS2-DUTIFUL_STEED_POWER.smartDescription": "If the next card used will deal damage give it {DamageBonus:diff()} damage.\nIf the next card used will gain block give it {BlockBonus:diff()} block.\nPower stack: {PowerStackCount:diff()}.",
+  
+  "MAISERSTS2-MAISER_NEIGHBORHOOD_HERO_POWER.title": "Maiser, Neighborhood Hero",
+  "MAISERSTS2-MAISER_NEIGHBORHOOD_HERO_POWER.description": "Whenever [gold]Amulet[/gold] is removed, Add {PowerStackCount:diff()} [gold]Rapid Fire[/gold] to hand.\nPower stack: {PowerStackCount:diff()}",
+  "MAISERSTS2-MAISER_NEIGHBORHOOD_HERO_POWER.smartDescription": "Whenever [gold]Amulet[/gold] is removed, Add {PowerStackCount:diff()} [gold]Rapid Fire[/gold] to hand.\nPower stack: {PowerStackCount:diff()}",
+
+  "MAISERSTS2-NATERRAN_GREAT_TREE_POWER.description": "If there is any stack count [gold]Naterran Great Tree[/gold] remove remove the stack until {Cards:diff()} to draw {Cards:diff()} card.\nPower stack: {PowerStackCount:diff()}.",
+  "MAISERSTS2-NATERRAN_GREAT_TREE_POWER.smartDescription": "If there is any stack count [gold]Naterran Great Tree[/gold] remove remove the stack until {Cards:diff()} to draw {Cards:diff()} card.\nPower stack: {PowerStackCount:diff()}.",
+  "MAISERSTS2-NATERRAN_GREAT_TREE_POWER.title": "Naterran Great Tree",
+
+  "MAISERSTS2-VINCENT_THE_PEACEKEEPER_POWER.description": "Whenever a card get enchanted by an [gold]amulet[/gold], add {CreateCount:diff()} [gold]Words of Judgement into hand.\nWhenever you play skill for the 3rd times with the same name of this turn, deal {Damage:diff()} damage to all enemies.\nCards Enhanced: {EnhancedByAmuletCount:diff()}.\nPower stack: {PowerStackCount:diff()}.",
+  "MAISERSTS2-VINCENT_THE_PEACEKEEPER_POWER.smartDescription": "Whenever a card get enchanted by an [gold]amulet[/gold], add {CreateCount:diff()} [gold]Words of Judgement into hand.\nWhenever you play skill for the 3rd times with the same name of this turn, deal {Damage:diff()} damage to all enemies.\nCards Enhanced: {EnhancedByAmuletCount:diff()}.\nPower stack: {PowerStackCount:diff().",
+  "MAISERSTS2-VINCENT_THE_PEACEKEEPER_POWER.title": "Vincent the Peacekeeper",
+
+  "MAISERSTS2-TETRAS_METTLE_POWER.description": "Whenever you play [gold]Machina[/gold] card draw {Cards:diff()} card.\nDuration: {TurnDurationCount:diff()} turn.\nPower stack: {PowerStackCount:diff()}",
+  "MAISERSTS2-TETRAS_METTLE_POWER.smartDescription": "Whenever you play [gold]Machina[/gold] card draw {Cards:diff()} card.\nDuration: {TurnDurationCount:diff()} turn.\nPower stack: {PowerStackCount:diff()}",
+  "MAISERSTS2-TETRAS_METTLE_POWER.title": "Tetra's Mettle"
+  
+}
