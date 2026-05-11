@@ -3,5 +3,8 @@
   "MAISERSTS2-SPELLBOOST.title": "Spellboost",
 
   "MAISERSTS2-Amulet.description": "Power type card that can be stacked and ",
-  "MAISERSTS2-Amulet.title": "Amulet"
+  "MAISERSTS2-Amulet.title": "Amulet",
+  
+  "MAISERSTS2-SHIKIGAMI.description": "Power type that will spellboost the card in your hand before its removed",
+  "MAISERSTS2-SHIKIGAMI.title": "Shikigami"
 }

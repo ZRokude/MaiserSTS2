@@ -31,17 +31,14 @@ public class AuthoringTomorrow: MaiserSTS2Card
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var applied = await PowerCmd.Apply<ArcanaPersonnelCarrierPower>(
+        var applied = await PowerCmd.Apply<AuthoringTomorrowPower>(
             choiceContext,
             Owner.Creature,
             amount: DynamicVars["DamageBonus"].BaseValue,
             applier: Owner.Creature,
             cardSource: this
         );
-        (applied as ArcanaPersonnelCarrierPower)?.IncrementNumber(
-            (int)DynamicVars["DamageBonus"].BaseValue,
-            (int)DynamicVars["BlockBonus"].BaseValue
-        );
+        (applied as AuthoringTomorrowPower)?.IncrementNumber();
     }
 
     protected override void OnUpgrade()

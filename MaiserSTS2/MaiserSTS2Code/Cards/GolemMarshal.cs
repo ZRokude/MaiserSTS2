@@ -30,6 +30,12 @@ public class GolemMarshal : EnhanceAccelCardModel
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (this.CanonicalEnergyCost > this.EnergyCost.GetWithModifiers(CostModifiers.All))
+        {
+            await CustomUtil.CreateCardInHand<DutifulSteed>(Owner,
+                DynamicVars.Cards.IntValue, CombatState, isFreeUntilPlayed: true);
+            return;
+        }
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await CustomUtil.CreateCardInHand<ArcanePersonnelCarrier>(
             Owner, DynamicVars.Cards.IntValue, CombatState,

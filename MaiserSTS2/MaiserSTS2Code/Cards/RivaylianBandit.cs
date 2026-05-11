@@ -18,7 +18,6 @@ public class RivaylianBandit : EnhanceAccelCardModel
     private const CardType Type = CardType.Attack;
     private const CardRarity Rarity = CardRarity.Common;
     private const TargetType Target = TargetType.AnyEnemy;
-    private bool _isEnhanced;
     public RivaylianBandit() :
         base(Cost, Type, Rarity, Target)
     { }
@@ -34,20 +33,12 @@ public class RivaylianBandit : EnhanceAccelCardModel
             new DynamicVar("EnhanceBlockBonusValue", 13),
         };
 
-    // public override async Task BeforeCardPlayed(CardPlay cardPlay)
-    // {
-    //     if (cardPlay.Card != this && this.Owner.PlayerCombatState.Energy < 3) return;
-    //     this.EnergyCost.AddUntilPlayed(2);
-    //     _isEnhanced = true;
-    //    
-    // }
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var blockValue = DynamicVars.Block;
         var damageValue = DynamicVars.Damage;
         var blockBonusValue = DynamicVars["BlockBonus"];
-        if (_isEnhanced)
+        if (this.CanonicalEnergyCost < this.EnergyCost.GetWithModifiers(CostModifiers.All))
         {
             damageValue.BaseValue += DynamicVars["EnhanceDamageValue"].BaseValue;
             blockValue.BaseValue += DynamicVars["EnhanceBlockValue"].BaseValue;

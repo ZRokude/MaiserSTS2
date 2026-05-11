@@ -1,6 +1,9 @@
-﻿using MaiserSTS2.MaiserSTS2Code.Cards;
+﻿using BaseLib.Extensions;
+using MaiserSTS2.MaiserSTS2Code.Cards;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
@@ -33,6 +36,14 @@ public abstract class SpellboostCardModel : MaiserSTS2Card
                 );
         }
     }
+
+    // public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    // {
+    //     if (!this.Owner.HasPower<ShikigamiPowerModel>()) return;
+    //     var shikigamiPower = this.Owner.Creature.Powers.OfType<ShikigamiPowerModel>().FirstOrDefault();
+    //     
+    //     DynamicVars["SpellboostCount"].BaseValue++;
+    // }
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
