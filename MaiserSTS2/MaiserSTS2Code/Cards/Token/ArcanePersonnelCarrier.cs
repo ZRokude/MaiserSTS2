@@ -1,4 +1,5 @@
 ﻿using MaiserSTS2.MaiserSTS2Code.Powers;
+using MaiserSTS2.MaiserSTS2Code.Utility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,7 +10,7 @@ namespace MaiserSTS2.MaiserSTS2Code.Cards.Token;
 public class ArcanePersonnelCarrier: MaiserSTS2Card
 {
     private const int Cost = 2;
-    private const CardType Type = CardType.Skill;
+    private static CardType Type = CustomCardType.Amulet;
     private const CardRarity Rarity = CardRarity.Uncommon;
     private const TargetType Target = TargetType.Self;
 
@@ -17,7 +18,7 @@ public class ArcanePersonnelCarrier: MaiserSTS2Card
         base(Cost, Type, Rarity, Target)
     {
     }
-
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         (IEnumerable<DynamicVar>)(object)new DynamicVar[2]
         {

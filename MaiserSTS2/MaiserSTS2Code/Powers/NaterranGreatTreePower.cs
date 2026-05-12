@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace MaiserSTS2.MaiserSTS2Code.Powers;
  
-public class NaterranGreatTreePower :AmuletPowerBase
+public class NaterranGreatTreePower :AmuletEnchantPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

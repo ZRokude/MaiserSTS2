@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace MaiserSTS2.MaiserSTS2Code.Cards;
 
 [Pool(typeof(MaiserSTS2CardPool))]
-public class RivaylianBandit : EnhanceAccelCardModel
+public class RivaylianBandit : EnhanceCardModel
 {
     private const int Cost = 1;
     private const CardType Type = CardType.Attack;
@@ -49,7 +49,7 @@ public class RivaylianBandit : EnhanceAccelCardModel
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
-        if(Owner.Creature.HasPower<AmuletPowerBase>()) blockValue.BaseValue += blockBonusValue.BaseValue;
+        if(Owner.Creature.HasPower<AmuletEnchantPowerModel>()) blockValue.BaseValue += blockBonusValue.BaseValue;
         await CreatureCmd.GainBlock(Owner.Creature, blockValue, cardPlay);
     }
     

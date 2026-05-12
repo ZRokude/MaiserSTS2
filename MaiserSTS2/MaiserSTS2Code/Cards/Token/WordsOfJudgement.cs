@@ -55,7 +55,7 @@ public class WordsOfJudgement : MaiserSTS2Card
     }
     private async Task IfThereAmuletPower(Player owner) 
     {
-        if (Owner.HasPower<AmuletPowerBase>())
+        if (Owner.HasPower<AmuletEnchantPowerModel>())
         {
             await PlayerCmd.GainEnergy(DynamicVars["EnergyGain"].BaseValue, owner);
         }

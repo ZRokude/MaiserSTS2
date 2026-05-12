@@ -32,30 +32,35 @@ public class ShikigamiSummon : MaiserSTS2Card
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         (IEnumerable<DynamicVar>)(object)new DynamicVar[3]
         {
-            new BlockVar(6, ValueProp.Move),
-            new DamageVar(6, ValueProp.Move),
+            new BlockVar(4, ValueProp.Move),
+            new DamageVar(5, ValueProp.Move),
             new DynamicVar("RequirementDeckCount", 5),
         };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        // if (Owner.Piles.Count() <= DynamicVars["RequirementDeckCount"].IntValue)
-        // {
-        //     List<Creature> creatures = ((CardModel)this).CombatState!.HittableEnemies.ToList();
-        //     if (creatures.Count > 0)
-        //     {
-        //         Creature rngCreature =
-        //             ((CardModel)this).Owner.RunState.Rng.Shuffle.NextItem<Creature>((IEnumerable<Creature>)creatures)!;K
-        //         await CreatureCmd.Damage(
-        //             choiceContext,
-        //             rngCreature,
-        //             DynamicVars.Damage.BaseValue,
-        //             ValueProp.Unblockable,
-        //             ((CardModel)this).Owner.Creature,
-        //             (CardModel)(object)this);
-        //     }
-        // }
+        if (Owner.PlayerCombatState.DrawPile.Cards.Count <= DynamicVars["RequirementDeckCount"].IntValue)
+        {
+            var applied = await PowerCmd.Apply<DemonicShikigamiPower>(
+                choiceContext,
+                Owner.Creature,
+                amount: DynamicVars["DamageBonus"].BaseValue,
+                applier: Owner.Creature,
+                cardSource: this
+            );
+            (applied as DemonicShikigamiPower)?.IncrementNumber(damage: DynamicVars.Damage.IntValue);
+        }
+        else
+        {
+            var applied = await PowerCmd.Apply<ShikigamiPower>(
+                choiceContext,
+                Owner.Creature,
+                amount: DynamicVars["DamageBonus"].BaseValue,
+                applier: Owner.Creature,
+                cardSource: this
+            );
+            (applied as ShikigamiPower)?.IncrementNumber(block: DynamicVars.Block.IntValue);
+        }
     }
 
     protected override void OnUpgrade()

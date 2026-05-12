@@ -3,9 +3,8 @@ using MaiserSTS2.MaiserSTS2Code.Cards;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -16,12 +15,18 @@ public abstract class SpellboostCardModel : MaiserSTS2Card
     public SpellboostCardModel(int Cost, CardType Type, CardRarity Rarity, TargetType TargetType) :
         base(Cost, Type, Rarity, TargetType)
     {}
-
+    
+     protected virtual IEnumerable<DynamicVar> SpellboostVars =>
+        (IEnumerable<DynamicVar>)(object)new DynamicVar[]
+        {
+            new DynamicVar("SpellboostCount", 0),
+        };
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        SpellboostVars;
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!cardPlay.Card.Keywords.Contains(CustomCardKeyword.Spellboost)&& cardPlay.Card.Type != CardType.Skill 
-            && !cardPlay.Card.Tags.Contains(CustomCardTags.Spellboost))
-            return;
+        if (!cardPlay.Card.Keywords.Contains(CustomCardKeyword.Spellboost)&& cardPlay.Card.Type != CardType.Skill &&
+            !cardPlay.Card.Tags.Contains(CustomCardTags.Accel))return;
         if (cardPlay.Card == this)
             DynamicVars["SpellboostCount"].BaseValue = 0;
             
@@ -37,13 +42,15 @@ public abstract class SpellboostCardModel : MaiserSTS2Card
         }
     }
 
-    // public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
-    // {
-    //     if (!this.Owner.HasPower<ShikigamiPowerModel>()) return;
-    //     var shikigamiPower = this.Owner.Creature.Powers.OfType<ShikigamiPowerModel>().FirstOrDefault();
-    //     
-    //     DynamicVars["SpellboostCount"].BaseValue++;
-    // }
+    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    {
+        if (!this.Owner.HasPower<LastWordSpellboostPowerModel>()) return;
+        var lastWordPowers = this.Owner.Creature.Powers.OfType<LastWordSpellboostPowerModel>().ToList();
+        foreach (var power in lastWordPowers)
+        {
+            DynamicVars["SpellboostCount"].BaseValue += power.DynamicVars["Spellboost"].BaseValue;
+        }
+    }
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
@@ -60,12 +67,11 @@ public abstract class SpellboostCardModel : MaiserSTS2Card
 
     private async Task IfSpellboostSubtractCost(int time= 1)
     {
-        EnergyCost.AddUntilPlayed(-time);
-      
-        if (this.EnergyCost.GetWithModifiers(CostModifiers.Local) < 0)
-        {
+        int calcCost = this.CanonicalEnergyCost - DynamicVars["SpellboostCount"].IntValue;
+        if (calcCost < 0)
             this.EnergyCost.SetUntilPlayed(0);
-        }
+        else if (calcCost == this.EnergyCost.GetWithModifiers(CostModifiers.All)) return;
+        EnergyCost.SetUntilPlayed(calcCost);
     }
     private async Task IfSpellboostAttackBoost(int time = 1)=>
         this.DynamicVars.Damage.BaseValue += time * DynamicVars["SpellboostDamageMultiplier"].BaseValue;

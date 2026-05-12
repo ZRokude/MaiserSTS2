@@ -35,7 +35,7 @@ public class VincentThePeacekeeperPower: CustomPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (!cardPlay.Card.DynamicVars.ContainsKey("Damage") || !cardPlay.Card.DynamicVars.ContainsKey("Block") &&
-            !cardPlay.Card.Owner.HasPower<AmuletPowerBase>())
+            !cardPlay.Card.Owner.HasPower<AmuletEnchantPowerModel>())
             return;
         if(_cardCounts.ContainsKey(cardPlay.Card))
             _cardCounts[cardPlay.Card]++;
@@ -47,10 +47,7 @@ public class VincentThePeacekeeperPower: CustomPowerModel
 
     private async Task EffectTriggerCount(PlayerChoiceContext choiceContext)
     {
-        foreach (Creature hittableEnemy in CombatState.HittableEnemies)
-        {
-            await CreatureCmd.Damage(choiceContext, hittableEnemy, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, Owner);
-        } 
+        await CreatureCmd.Damage(choiceContext, base.CombatState.HittableEnemies, DynamicVars.Damage.BaseValue, ValueProp.Unpowered, Owner);
     }
 
     public override Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)

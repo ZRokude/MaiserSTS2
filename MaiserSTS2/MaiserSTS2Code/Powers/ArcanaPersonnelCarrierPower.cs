@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace MaiserSTS2.MaiserSTS2Code.Powers;
 
-public class ArcanaPersonnelCarrierPower: AmuletPowerBase
+public class ArcanaPersonnelCarrierPower: AmuletEnchantPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -54,7 +54,7 @@ public class ArcanaPersonnelCarrierPower: AmuletPowerBase
         _isTriggered = false;
         
         await PowerCmd.Remove(this);
-        await OnAmuletRemoved(Owner,(int)DynamicVars["PowerStackCount"].BaseValue, this.CombatState);
+        await OnAmuletEnhancedRemoved(cardPlay,Owner,(int)DynamicVars["PowerStackCount"].BaseValue, this.CombatState);
         base.DynamicVars["PowerStackCount"].BaseValue = 0;
     }
 

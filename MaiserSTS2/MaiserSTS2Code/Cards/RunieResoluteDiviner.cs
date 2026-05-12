@@ -35,21 +35,21 @@ public class RunieResoluteDiviner: SpellboostCardModel
     };
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => 
-        (IEnumerable<CardKeyword>)(object)new CardKeyword[1]
+        (IEnumerable<CardKeyword>)(object)new CardKeyword[]
         {
             CustomCardKeyword.Spellboost
         };
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        (IEnumerable<DynamicVar>)(object)new DynamicVar[6]
+        base.CanonicalVars.Concat(
+        (IEnumerable<DynamicVar>)(object)new DynamicVar[]
         {
             new DamageVar(5, ValueProp.Move),
             new BlockVar(4, ValueProp.Move),
             new DynamicVar("HealingValue", 3),
             new CardsVar(1),
-            new DynamicVar("CreateCount", 3),
-            new DynamicVar("SpellboostCount", 0)
-        };
+            new DynamicVar("CreateCount", 3)
+        });
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

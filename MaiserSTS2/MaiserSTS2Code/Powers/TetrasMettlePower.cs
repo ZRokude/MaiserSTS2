@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace MaiserSTS2.MaiserSTS2Code.Powers;
-
 public class TetrasMettlePower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
@@ -39,7 +38,7 @@ public class TetrasMettlePower : CustomPowerModel
     
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!cardPlay.Card.Tags.Contains(CustomCardTags.Machina) || cardPlay.Card.Owner != this.Owner.Player) return;
+        if (!cardPlay.Card.Keywords.Contains(CustomCardKeyword.Machina) || cardPlay.Card.Owner != this.Owner.Player) return;
         await CardPileCmd.Draw(choiceContext,DynamicVars.Cards.BaseValue, Owner.Player);
     }
     public void IncrementNumber(int drawCount, int turnDurationCount)

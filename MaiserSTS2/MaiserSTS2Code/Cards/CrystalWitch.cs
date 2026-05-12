@@ -28,14 +28,13 @@ public class CrystalWitch: SpellboostCardModel
         CustomCardKeyword.Spellboost
     };
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        (IEnumerable<DynamicVar>)(object)new DynamicVar[1]
+        base.CanonicalVars.Concat((IEnumerable<DynamicVar>)(object)new DynamicVar[1]
         {
             new CardsVar(1),
-        };
+        });
    
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        
         CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
 

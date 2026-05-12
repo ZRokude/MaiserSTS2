@@ -21,15 +21,17 @@ public class ImpalementArts : SpellboostCardModel
         base(Cost, Type, Rarity, Target)
     {
     }
-
+    protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag>
+    {
+        CustomCardTags.SpellboostAdditionalEffect
+    };
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        (IEnumerable<DynamicVar>)(object)new DynamicVar[4]
+        base.CanonicalVars.Concat((IEnumerable<DynamicVar>)(object)new DynamicVar[]
         {
             new DamageVar(8, ValueProp.Move),
             new CardsVar(1),
-            new DynamicVar("SpellboostCount", 0),
             new DynamicVar("SpellboostRequirement", 5),
-        };
+        });
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

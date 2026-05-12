@@ -29,13 +29,12 @@ public class ChaosWielder : SpellboostCardModel
         CustomCardTags.SpellboostSubtractCost
     };
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        (IEnumerable<DynamicVar>)(object)new DynamicVar[4]
+        base.CanonicalVars.Concat((IEnumerable<DynamicVar>)(object)new DynamicVar[]
         {
             new BlockVar(4, ValueProp.Move),
             new CardsVar(2),
             new DynamicVar("Spellboost", 1),
-            new DynamicVar("SpellboostCount", 0)
-        };
+        });
     
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

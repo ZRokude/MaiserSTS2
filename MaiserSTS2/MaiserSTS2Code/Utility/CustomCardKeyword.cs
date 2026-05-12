@@ -12,4 +12,5 @@ public static class CustomCardKeyword
     [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Shikigami;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Enhance;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Accel;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Machina;
 }

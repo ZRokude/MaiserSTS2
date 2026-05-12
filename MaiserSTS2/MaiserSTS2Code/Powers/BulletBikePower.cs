@@ -1,9 +1,7 @@
-﻿using BaseLib.Abstracts;
-using MaiserSTS2.MaiserSTS2Code.Utility;
+﻿using MaiserSTS2.MaiserSTS2Code.Utility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -12,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace MaiserSTS2.MaiserSTS2Code.Powers;
 
-public class DutifulSteedPower : AmuletEnchantPowerModel
+public class BulletBikePower: AmuletEnchantPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -22,10 +20,9 @@ public class DutifulSteedPower : AmuletEnchantPowerModel
     private bool isGainingBlock;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        (IEnumerable<DynamicVar>)(object)new DynamicVar[3]
+        (IEnumerable<DynamicVar>)(object)new DynamicVar[]
         {
             new DynamicVar("DamageBonus", 0),
-            new DynamicVar("BlockBonus", 0),
             new IntVar("PowerStackCount", 0)
         };
     public override async Task BeforeCardPlayed(CardPlay cardPlay)
@@ -43,13 +40,6 @@ public class DutifulSteedPower : AmuletEnchantPowerModel
         return base.DynamicVars["DamageBonus"].BaseValue;
     }
 
-    public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)
-    {
-        if (!isGainingBlock) return 0m;
-        _isTriggered = true;
-        return base.DynamicVars["BlockBonus"].BaseValue;;
-    }
-
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (!_isTriggered) return;
@@ -60,11 +50,10 @@ public class DutifulSteedPower : AmuletEnchantPowerModel
         base.DynamicVars["PowerStackCount"].BaseValue = 0;
     }
 
-    public void IncrementNumber(int dmgAmount, int blockAmount)
+    public void IncrementNumber(int dmgAmount)
     {
         AssertMutable();
         base.DynamicVars["DamageBonus"].BaseValue += dmgAmount;
-        base.DynamicVars["BlockBonus"].BaseValue += blockAmount;
         base.DynamicVars["PowerStackCount"].BaseValue++;
     }
 }

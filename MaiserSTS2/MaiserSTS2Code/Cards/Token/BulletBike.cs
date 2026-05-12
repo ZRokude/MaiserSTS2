@@ -4,41 +4,38 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 
-namespace MaiserSTS2.MaiserSTS2Code.Cards;
+namespace MaiserSTS2.MaiserSTS2Code.Cards.Token;
 
-public class Demoncaller: SpellboostCardModel
+public class BulletBike : MaiserSTS2Card
 {
-    private const int Cost = 10;
-    private const CardType Type = CardType.Power;
-    private const CardRarity Rarity = CardRarity.Common;
+    private const int Cost = 2;
+    private static CardType Type = CustomCardType.Amulet;
+    private const CardRarity Rarity = CardRarity.Uncommon;
     private const TargetType Target = TargetType.Self;
 
-    public Demoncaller() :
+    public BulletBike() :
         base(Cost, Type, Rarity, Target)
     {
     }
-    protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag>
-    {
-        CustomCardTags.SpellboostSubtractCost
-    };
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        base.CanonicalVars.Concat((IEnumerable<DynamicVar>)(object)new DynamicVar[]
+        (IEnumerable<DynamicVar>)(object)new DynamicVar[]
         {
-            new DamageVar(6, ValueProp.Move)
-        });
-        
+            new DynamicVar("DamageBonus", 2),
+        };
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var applied = await PowerCmd.Apply<DemonicShikigamiPower>(
+        var applied = await PowerCmd.Apply<BulletBikePower>(
             choiceContext,
             Owner.Creature,
             amount: 0,
             applier: Owner.Creature,
             cardSource: this
         );
-        (applied as DemonicShikigamiPower)?.IncrementNumber(damage: DynamicVars.Damage.IntValue);
+        (applied as BulletBikePower)?.IncrementNumber(
+            (int)DynamicVars["DamageBonus"].BaseValue);
     }
 
     protected override void OnUpgrade()
